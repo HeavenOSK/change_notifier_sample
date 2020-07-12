@@ -11,6 +11,9 @@ class Counter extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// async, await の処理は [ChangeNotifier] 景勝クラスの中に
+  /// 隠蔽する。
+  /// Stream も同じ。
   void incrementOneHundred() async {
     await Future.delayed(Duration(seconds: 2));
     count += 100;
@@ -71,6 +74,8 @@ class CounterPage extends StatelessWidget {
   }
 }
 
+/// Widget を分割することによって、[ChangeNotifier]による
+/// 更新範囲を限定する。
 class _CounterWidget extends StatelessWidget {
   const _CounterWidget({Key key}) : super(key: key);
 
